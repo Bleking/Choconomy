@@ -1,0 +1,74 @@
+
+
+
+
+.bg{
+    width: 1280px;
+    height: 942px; 
+    left: 320px; 
+    top: 79px; 
+    position: absolute; 
+    background: #D9D9D9;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.logo{
+    width: 400px; 
+    height: 400px; 
+    left: 760px; 
+    top: 202px; 
+    position: absolute;
+}
+
+.FinalModal {
+    display: "none";
+    width: 1190px; height: 860px; left: 263px; top: 160px; position: absolute;
+    z-index: -1;
+}
+
+
+.chat{
+    display:none;
+    width: 501px; height: 352px; left: 29px; top: 30px; position: absolute;
+}
+
+.chatList{
+    flex: 12;
+    overflow-y: scroll;
+    width: 488px; height: 292px; left: 6px; top: 4px; position: absolute;
+    background: rgba(255, 255, 255, 0.80); border-radius: 4px;
+}
+
+.ChatInput{
+    flex: 2;
+    display: flex;
+    justify-content: stretch;
+    align-items: stretch;
+    width: 488px; height: 50px; left: 6px; top: 298px; position: absolute;
+    background: rgba(255, 255, 255, 0.70); border-radius: 4px;
+}
+
+.EgInputChat{
+    font-size: 12px;
+    flex:8;
+    left: 30px; top: 306px;
+    position: absolute; color: black;
+    font-size: 35px; font-family: Sunflower; font-weight: 500; word-wrap: break-word;
+}
+
+.ChatBtn{
+    flex:1; width: 45px; height: 36px; left: 439px; top: 306px; position: absolute;
+}
+
+
+.QuizModal {
+    display: "none";
+    width: 1168px; height: 646px; left: 381px; top: 149px;
+    position: absolute;
+    background: #D9D9D9;
+}
+
+
+
+.left_r { width: 110px; height: 110px; left: 145px; top: 336px; position: absolute; background: black; border-radius: 141px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);}
+.right_r { width: 110px; height: 110px; left: 1670px; top: 640px; position: absolute; background: black; border-radius: 141px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);}

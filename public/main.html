@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <link rel="stylesheet" href="./style/main.css" type="text/css"> -->
+    <script src = "https://cdn.jsdelivr.net/npm/phaser@3.60.0/dist/phaser.js"></script>
+    <style>
+        @font-face {
+            font-family: 'NeoDunggeunmo';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.3/NeoDunggeunmo.woff') format('woff');
+            font-weight: normal; font-style: normal;
+        }
+        @font-face {
+            font-family: 'LINESeedKR-Bd';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Bd.woff2') format('woff2');
+            font-weight: 700; font-style: normal;
+        }
+        @font-face {
+            font-family: 'Cafe24Supermagic-Bold-v1.0';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2307-2@1.0/Cafe24Supermagic-Bold-v1.0.woff2') format('woff2');
+            font-weight: 700;  font-style: normal;
+        }
+        @font-face {
+            font-family: 'TheJamsil5Bold';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302_01@1.0/TheJamsil5Bold.woff2') format('woff2');
+            font-weight: 700; font-style: normal;
+        }
+        @font-face {
+            font-family: 'Giants-Inline';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2307-1@1.1/Giants-Inline.woff2') format('woff2');
+            font-weight: normal; font-style: normal;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="Main169" style="width: 1920px; height: 1080px; position: relative; background: white">
+        
+        <div class="BgBox" style="width: 1926px; height: 1482.13px; left: -9px; top: -270px; position: absolute">
+          <div class="BackDiv" style="width: 1912.72px; height: 1236.40px; left: 6.64px; top: 100.26px; position: absolute; background: #D9D9D9"></div>
+          <img class="BgImg" style="width: 1926px; height: 1482.13px; left: 0px; top: 0px; position: absolute" src="./assets/img/bg_img.png" />
+        </div>
+
+        <div class="RightBox" style="width: 391.39px; height: 972.44px; left: 1496.06px; top: 54.18px; position: absolute">
+          <div class="RightStick" style="width: 391.39px; height: 972.44px; left: 0px; top: 0px; position: absolute; background:#FF4444 100%; box-shadow: 0px 9px 4px rgba(0, 0, 0, 0.25); border-radius: 100px"></div>
+          <div class="RightR" style="width: 113.90px; height: 113.55px; left: 196.73px; top: 579.13px; position: absolute; background: black; box-shadow: 0px 9px 4px rgba(0, 0, 0, 0.25); border-radius: 141px"></div>
+          <div class="RightR01" style="width: 44.52px; height: 44.39px; left: 230.90px; top: 238.46px; position: absolute; background: black; box-shadow: 0px 9px 4px rgba(0, 0, 0, 0.25); border-radius: 141px"></div>
+          <div class="RightR02" style="width: 44.52px; height: 44.39px; left: 270.25px; top: 277.69px; position: absolute; background: black; box-shadow: 0px 9px 4px rgba(0, 0, 0, 0.25); border-radius: 141px"></div>
+          <div class="RightR03" style="width: 44.52px; height: 44.39px; left: 192.59px; top: 277.69px; position: absolute; background: black; box-shadow: 0px 9px 4px rgba(0, 0, 0, 0.25); border-radius: 141px"></div>
+          <div class="RightR04" style="width: 44.52px; height: 44.39px; left: 230.90px; top: 315.89px; position: absolute; background: black; box-shadow: 0px 9px 4px rgba(0, 0, 0, 0.25); border-radius: 141px"></div>
+          <div class="RBox" style="width: 28.99px; height: 28.90px; left: 160.49px; top: 764.94px; position: absolute; background: black; box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.25)"></div>
+          <button type="button" id ="mypageIcon" class="MypageIcon" style="width: 75.59px; height: 65.32px; left: 215.29px; top: 602.31px; position: absolute; background:black;">
+            <image src="./assets/img/mypage_icon.png"></image>
+          </button>
+        </div>
+
+        <div class="LeftBox" style="width: 391.39px; height: 972.44px; left: 33px; top: 54.18px; position: absolute">
+          <div class="LeftStick" style="width: 391.39px; height: 972.44px; left: 0px; top: 0px; position: absolute; background: #2BD9FF; box-shadow: 0px 9px 4px rgba(0, 0, 0, 0.25); border-radius: 100px"></div>
+          <div class="LeftR" style="width: 113.90px; height: 113.55px; left: 77.66px; top: 265.30px; position: absolute; background: black; box-shadow: 0px 9px 4px rgba(0, 0, 0, 0.25); border-radius: 141px"></div>
+          <div class="LeftR01" style="width: 44.52px; height: 44.39px; left: 111.83px; top: 570.87px; position: absolute; background: black; box-shadow: 0px 9px 4px rgba(0, 0, 0, 0.25); border-radius: 141px"></div>
+          <div class="LeftR02" style="width: 44.52px; height: 44.39px; left: 151.17px; top: 610.09px; position: absolute; background: black; box-shadow: 0px 9px 4px rgba(0, 0, 0, 0.25); border-radius: 141px"></div>
+          <div class="LeftR03" style="width: 44.52px; height: 44.39px; left: 73.52px; top: 610.09px; position: absolute; background: black; box-shadow: 0px 9px 4px rgba(0, 0, 0, 0.25); border-radius: 141px"></div>
+          <div class="LeftR04" style="width: 44.52px; height: 44.39px; left: 111.83px; top: 648.29px; position: absolute; background: black; box-shadow: 0px 9px 4px rgba(0, 0, 0, 0.25); border-radius: 141px"></div>
+          <!-- <div class="LBox" style="width: 28.99px; height: 28.90px; left: 185.34px; top: 764.94px; position: absolute; background: black"></div> -->
+          <button type="button" id="chatIcon" class="ChatIcon" style="width: 75.59px; height: 48.99px; left: 100.28px; top: 299.43px; position: absolute; background:black">
+            <image src="./assets/img/chat_icon.png"></image>
+          </button>
+          <div class="bgm" style="width: 28.99px; height: 28.90px; left: 185.34px; top: 764.94px; position: absolute;">
+            <audio id="player" autoplay loop>
+                <source src="./assets/pixel-plains-158773.mp3" type="audio/mpeg">
+            </audio>
+            <button type="button" id="bgmbtn" onclick="togglePlayPause()" style="font-size: 43px; font-family: NeoDunggeunmo; font-weight: 400;">▶</button>
+          </div>
+        </div>
+
+        <div class="BottomBox" style="width: 1325.55px; height: 1000px; left: 290.90px; top: 54px; position: absolute">
+          <div class="BottomBox" style="width: 1325.55px; height: 972.92px; left: 0px; top: 0px; position: absolute; background: #2E2E2E; box-shadow: 0px 9px 4px rgba(0, 0, 0, 0.25)"></div>
+          <div class="BottomScreen" style="width: 1280.04px; height: 978px; left: 23.10px; top: 22px; position: absolute">
+            <div class="BottomScreen" style="width: 1280px; height: 928.76px; left: 0.04px; top: 0.06px; position: absolute; background: #FCFCFF"></div>
+            
+            <div class="FooterInfo" style="width: 1214.31px; height: 168.97px; left: 26.27px; top: 809.03px; position: absolute">
+              <div class="FooterName" style="width: 200.75px; height: 92.16px; left: 1008.87px; top: 1.82px; position: absolute; color: black; font-size: 40px; font-family: LINESeedKR-Bd; font-weight: 400; word-wrap: break-word">
+                <span id="nick-name"></span>님
+              </div>
+              <div class="FooterLevel" style="width: 59.01px; height: 55.30px; left: 400.01px; top: 61.67px; position: absolute">
+                <image class="FooterLevIcon" style="width: 59.01px; height:55.30px; left: 0px; top: 0px; position: absolute;" src="./assets/img/footer_lev_icon.png"/>
+                <div id="level" class="FooterLevNum" style="width: 41.41px; height: 30.72px; left: 8.28px; top: 12.29px; position: absolute; text-align: center; color: black; font-size: 30px; font-family: NeoDunggeunmo; font-weight: 400; word-wrap: break-word">2</div>
+              </div>
+              <div class="FoooterInt" style="width: 200.55px; height: 46.79px; left: 520.23px; top: 64.93px; position: absolute; color: black; font-size: 43px; font-family: NeoDunggeunmo; font-weight: 400; word-wrap: break-word">
+                INT:<span id="ability"></span>
+              </div>
+              <div class="FooterHp" style="width: 250.27px; height: 46.79px; left: 750.56px; top: 64.93px; position: absolute; color: black; font-size: 43px; font-family: NeoDunggeunmo; font-weight: 400; word-wrap: break-word">
+                HP:<span id="health"></span>
+              </div>
+              <div class="FooterLive1st" style="width: 426.51px; height: 43.52px; left: 0px; top: 4.06px; position: absolute; color: black; font-size: 40px; font-family: LINESeedKR-Bd; font-weight: 400; word-wrap: break-word">
+                <!-- (시간) 1위 kaka 1300원 -->
+              </div>
+              <div class="FooterMoney" style="width: 205.44px; height: 92.48px; left: 1008.87px; top: 64.93px; position: absolute; color: black; font-size: 43px; font-family: NeoDunggeunmo; font-weight: 400; word-wrap: break-word">
+                <span id="money"></span> 원
+              </div>
+              <div class="Timer" style="width: 138.72px; height: 168.97px; left: 0.23px; top: 37.76px; position: absolute; text-align: center; color: black; font-size: 55px;  font-family: NeoDunggeunmo; font-weight: 400; line-height: 82.30px; word-wrap: break-word;">
+                <span id="time"></span>
+              </div>
+            </div>
+            
+            <div id="mainGame" class="BottomGame" style="width: 1280px; height: 800px; left: 0px; top: 0px; position: absolute; background: #9C9393"></div>
+          </div>
+        </div>
+
+
+        <div id ="chat" class="chat" style="display:none; width: 501px; height: 352px; position: absolute">
+            <div class="ChatDiv" style="width: 501px; height: 356px; left: 0px; top: 0px; position: absolute; background: rgba(243.31, 181.71, 23.32, 0.70); border-radius: 4px"></div>
+            <div class="ChatList" style="overflow-y: scroll; width: 488px; height: 292px; left: 6px; top: 4px; position: absolute; background: rgba(255, 255, 255, 0.80); border-radius: 4px">
+                <ul class="EgList" ></ul>
+            </div>
+            <input id="chatInput" class="ChatInput" placeholder="채팅입력" style="width: 485px; height: 50px; left: 4px; top: 298px; position: absolute;
+            background: rgba(255, 255, 255, 0.70); border-color: rgba(243.31, 181.71, 23.32, 0.70); border-radius: 4px;
+            color: black; font-size: 35px; font-family: 'Cafe24Supermagic-Bold-v1.0'; font-weight: 500; word-wrap: break-word;
+            flex:8;"> 
+            <img id="chatBtn" class="ChatBtn" src="./assets/img/chat_btn.png" style="width: 55px; height: 48px; left: 439px; top: 300px; position: absolute"/>
+        </div>
+    
+        <div id = "shop" class="ShopModal" style="width: 600px; height: 450px; left: 660px; top: 256px; position: absolute">
+            <div class="ShopModal" style="width: 600px; height: 450px; left: 0px; top: 0px; position: absolute; background: #E6F1C7; box-shadow: 2px 2px 2px; border-radius: 16px; border: 0.25px black solid; filter: blur(2px)"></div>
+            <img class="DrinkImg" style="width: 88px; height: 135px; left: 441px; top: 125px; position: absolute" src="./assets/img/drink_img.png" />
+            <img class="FoodImg" style="width: 133px; height: 116px; left: 47px; top: 232px; position: absolute" src="./assets/img/food_img.png" />
+            <img class="BookImg" style="width: 119px; height: 117px; left: 260px; top: 231px; position: absolute" src="./assets/img/book_img.png" />
+            <img class="InsuranceImg" style="width: 204px; height: 102px; left: 96px; top: 44px; position: absolute" src="./assets/img/insurance_img.png" />
+            <button id ="inHigh" class="InHigh" style="width: 146px; height: 61px; left: 54px; top: 127px; position: absolute">
+              <div class="InHighBtn" style="width: 146px; height: 61px; left: 0px; top: 0px; position: absolute; border: 0.50px #E6F1C7 solid"></div>
+              <div class="InsuranceHighEffect" style="left: 15px; top: 11px; position: absolute; text-align: center; color: black; font-size: 16px; font-family: Sunflower; font-weight: 500; word-wrap: break-word">고가형 보험 (30원)<br/>병원비 95원 할인</div>
+            </button>
+            <button id="inLow" class="InLow" style="width: 168px; height: 60px; left: 205px; top: 123px; position: absolute">
+              <div class="InLowBtn" style="width: 168px; height: 60px; left: 0px; top: 0px; position: absolute; border: 0.50px #E6F1C7 solid"></div>
+              <div class="InsuranceLowEffect" style="width: 123.20px; height: 39.34px; left: 19.35px; top: 15.74px; position: absolute; text-align: center; color: black; font-size: 16px; font-family: Sunflower; font-weight: 500; word-wrap: break-word">저가형 보험 (20원)<br/>병원비 65원 할인</div>
+            </button>
+
+            <div class="Energy" style="width: 134px; height: 51px; left: 418px; top: 260px; position: absolute">
+              <button type="button"  id="energy" class="EnergyBtn" style="width: 134px; height: 51px; left: 0px; top: 0px; position: absolute; border: 0.50px #E6F1C7 solid"></button>
+              <div class="EnergyEffect" style="left: 5px; top: 11px; position: absolute; text-align: center; color: black; font-size: 16px; font-family: Sunflower; font-weight: 500; word-wrap: break-word">에너지 음료 (30원)<br/>체력 2 회복</div>
+            </div>
+            <button id="food" class="Food" style="width: 114px; height: 61px; left: 58px; top: 348px; position: absolute">
+              <div class="FoodBtn" style="width: 114px; height: 61px; left: 0px; top: 0px; position: absolute; border: 0.50px #E6F1C7 solid"></div>
+              <div class="FoodEffect" style="left: 12px; top: 10px; position: absolute; text-align: center; color: black; font-size: 16px; font-family: Sunflower; font-weight: 500; word-wrap: break-word">비빔밥 (60원)<br/>체력 5 회복</div>
+            </button>
+            <button id="book" class="Book" style="width: 95px; height: 61px; left: 272px; top: 347px; position: absolute">
+              <div class="BookBtn" style="width: 95px; height: 61px; left: 0px; top: 0px; position: absolute; border: 0.50px #E7F2C8 solid"></div>
+              <div class="BookEffect" style="left: 7px; top: 11px; position: absolute; text-align: center; color: black; font-size: 16px; font-family: Sunflower; font-weight: 500; word-wrap: break-word">책 (50원)<br/>능력  5 증가</div>
+            </button>
+          </div>
+
+        <div id="estate" class="EstateModal" style="width: 600px; height: 368px; left: 660px; top: 330px; position: absolute">
+          <div class="EstateModalBg" style="width: 600px; height: 368px; left: 0px; top: 0px; position: absolute; background: #E6F1C7; box-shadow: 2px 2px 2px; border-radius: 16px; border: 0.25px black solid; filter: blur(2px)"></div>
+          <div class="EstateTxt" style="width: 476px; height: 67px; left: 62px; top: 30px; position: absolute; text-align: center; color: black; font-size: 30px; font-family: Sunflower; font-weight: 500; word-wrap: break-word">“ 무슨 일로 오셨나요 ? “</div>
+          <div class="EstateBtn" style="width: 529.91px; height: 239.31px; left: 37px; top: 108px; position: absolute">
+              <div id ="sellhouse" class="WorkBtn" style="width: 249.87px; height: 204.31px; left: 0px; top: 35px; position: absolute;">
+                  <svg type="button" class="ForeventIcon" xmlns="http://www.w3.org/2000/svg" width="254" height="208" viewBox="0 0 254 208" fill="none">
+                          <path fill-rule="evenodd" clip-rule="evenodd" d="M124.234 2.01782C66.1611 2.82116 14.9401 30.6873 4.06605 70.2186C-8.36573 115.396 36.5877 158.777 104.412 167.054L105.093 167.026L105.465 167.283L103.928 167.328L200.257 206.313L161.208 165.222C208.12 156.304 241.008 132.181 249.802 100.218C262.23 55.0405 217.26 11.6541 149.435 3.37808C140.96 2.34255 132.533 1.90287 124.234 2.01782ZM160.969 165.235H161.112V165.451L160.969 165.235Z" fill="white" stroke="black" stroke-width="2.5" stroke-linejoin="round"/>
+                  </svg>
+                  <div class="ForworkingBtntag" style="width: 209px; height: 74px; left: 20.20px; top: 47.60px; position: absolute"></div>
+                  <div id="sell_h" class="WorkingTxt" style="width: 163px; height: 25px; left: 43.20px; top: 64.60px; position: absolute; text-align: center; color: black; font-size: 30px; font-family: Sunflower; font-weight: 500; word-wrap: break-word">집 팔러요</div>
+              </div>
+              <div id ="buyhouse" class="EventBtn" style="width: 249.91px; height: 198.56px; left: 280px; top: 0px; position: absolute">
+                      <svg type="button" xmlns="http://www.w3.org/2000/svg" width="254" height="202" viewBox="0 0 254 202" fill="none">
+                          <path fill-rule="evenodd" clip-rule="evenodd" d="M124.26 2.0154C66.1765 2.78383 14.9449 29.4329 4.06545 67.238C-8.36047 110.424 36.5611 151.895 104.353 159.836C104.367 159.902 104.343 160.001 104.337 160.096L103.948 160.109L51.1245 200.556L159.652 158.576L158.583 158.604L159.28 158.166L160.835 158.125L159.652 158.576L161.143 158.535V158.111H161.159C208.12 149.594 241.044 126.518 249.843 95.928C262.274 52.7242 217.297 11.2364 149.46 3.31733C140.981 2.32767 132.553 1.90724 124.256 2.017L124.26 2.0154Z" fill="white"/>
+                          <path d="M159.652 158.576L51.1245 200.556L103.948 160.109L104.337 160.096C104.343 160.001 104.367 159.902 104.353 159.836C36.5611 151.895 -8.36047 110.424 4.06545 67.238C14.9449 29.4329 66.1764 2.78383 124.26 2.0154L124.256 2.017C132.553 1.90724 140.981 2.32767 149.46 3.31733C217.297 11.2364 262.274 52.7242 249.843 95.928C241.044 126.518 208.12 149.594 161.159 158.111H161.143V158.535L159.652 158.576ZM159.652 158.576L158.583 158.604L159.28 158.166L160.835 158.125L159.652 158.576Z" stroke="black" stroke-width="2.5" stroke-linejoin="round"/>
+                        </svg>
+                  <div class="ForeventBtntag" style="width: 195px; height: 81px; left: 26.69px; top: 42.05px; position: absolute"></div>
+                  <div id="buy_h" class="EventTxt" style="width: 207px; height: 34px; left: 20.69px; top: 66.05px; position: absolute; text-align: center; color: black; font-size: 30px; font-family: Sunflower; font-weight: 500; word-wrap: break-word">집 좀 보러 왔어요</div>
+              </div>
+          </div>
+      </div>
+
+    <div id="academy" class="AcademyModal" style="width: 600px; height: 450px; left: 660px; top: 272px; position: absolute">
+        <div class="AcademyModalBg" style="width: 600px; height: 450px; left: 0px; top: 0px; position: absolute; background: #E6F1C7; box-shadow: 2px 2px 2px; border-radius: 16px; border: 0.25px black solid; filter: blur(2px)"></div>
+        <img class="TextBoxingImg" style="width: 406px; height: 298px; left: 122px; top: 31px; position: absolute" src="./assets/img/text-boxing-img.png" />
+        <img class="AcademyImg" style="width: 209px; height: 204px; left: 43px; top: 227px; position: absolute" src="./assets/img/academy_img.png" />
+        <button id = "academy_quiz" class="AcademyQuizBtnBox" style="width: 300px; height: 73px; left: 177px; top: 162px; position: absolute">
+            <div class="AcademyQuizBtnTxt" style="width: 300px; height: 47px; left: 0px; top: 14px; position: absolute; text-align: center; color: black; font-size: 30px; font-family: Sunflower; font-weight: 500; word-wrap: break-word">공부하러 가기</div>
+            <div class="AcademyQuizBtn" style="width: 216.11px; height: 73px; left: 51.89px; top: 0px; position: absolute; border: 0.50px white solid"></div>
+        </button>
+        <div class="AcademyTxt" style="width: 336px; height: 35px; left: 157px; top: 115px; position: absolute; text-align: center; color: black; font-size: 30px; font-family: Sunflower; font-weight: 500; word-wrap: break-word">“ 미래를 위해 공부해야지! “</div>
+    </div>
+
+    <div id="home" class="HomeModal" style="width: 600px; height: 450px; left: 660px; top: 272px; position: absolute">
+        <div class="HomeModalBg" style="width: 600px; height: 450px; left: 0px; top: 0px; position: absolute; background: #E6F1C7; box-shadow: 2px 2px 2px; border-radius: 16px; border: 0.25px black solid; filter: blur(2px)"></div>
+        <img class="TextBoxingImg" style="width: 406px; height: 298px; left: 122px; top: 31px; position: absolute" src="./assets/img/text-boxing-img.png" />
+        <img class="HomeImg" style="width: 209px; height: 204px; left: 43px; top: 227px; position: absolute" src="./assets/img/lamb.png" />
+        <button id = "rest" class="RestBtnBox" style="width: 300px; height: 73px; left: 177px; top: 162px; position: absolute">
+            <div class="RestBtnTxt" style="width: 300px; height: 47px; left: 0px; top: 14px; position: absolute; text-align: center; color: black; font-size: 30px; font-family: Sunflower; font-weight: 500; word-wrap: break-word">쉬기</div>
+            <div class="RestBtn" style="width: 216.11px; height: 73px; left: 51.89px; top: 0px; position: absolute; border: 0.50px white solid"></div>
+        </button>
+        <div class="HomeTxt" style="width: 336px; height: 35px; left: 157px; top: 115px; position: absolute; text-align: center; color: black; font-size: 30px; font-family: Sunflower; font-weight: 500; word-wrap: break-word">“ 피곤하다. 쉬자.<br> (5초간 이동 불가) “</div>
+    </div>
+
+    <div id="select" class="SelectModal" style="width: 600px; height: 368px; left: 660px; top: 330px; position: absolute">
+        <div class="SelectModalBg" style="width: 600px; height: 368px; left: 0px; top: 0px; position: absolute; background: #E6F1C7; box-shadow: 2px 2px 2px; border-radius: 16px; border: 0.25px black solid; filter: blur(2px)"></div>
+        <div class="SelectTxt" style="width: 476px; height: 67px; left: 62px; top: 30px; position: absolute; text-align: center; color: black; font-size: 30px; font-family: Sunflower; font-weight: 500; word-wrap: break-word">“ 무슨 일로 오셨나요 ? “</div>
+        <div class="SelectBtn" style="width: 529.91px; height: 239.31px; left: 37px; top: 108px; position: absolute">
+            <div id ="staff" class="WorkBtn" style="width: 249.87px; height: 204.31px; left: 0px; top: 35px; position: absolute;">
+                <svg type="button" class="ForeventIcon" xmlns="http://www.w3.org/2000/svg" width="254" height="208" viewBox="0 0 254 208" fill="none">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M124.234 2.01782C66.1611 2.82116 14.9401 30.6873 4.06605 70.2186C-8.36573 115.396 36.5877 158.777 104.412 167.054L105.093 167.026L105.465 167.283L103.928 167.328L200.257 206.313L161.208 165.222C208.12 156.304 241.008 132.181 249.802 100.218C262.23 55.0405 217.26 11.6541 149.435 3.37808C140.96 2.34255 132.533 1.90287 124.234 2.01782ZM160.969 165.235H161.112V165.451L160.969 165.235Z" fill="white" stroke="black" stroke-width="2.5" stroke-linejoin="round"/>
+                </svg>
+                <div class="ForworkingBtntag" style="width: 209px; height: 74px; left: 20.20px; top: 47.60px; position: absolute"></div>
+                <div id="staff_work" class="WorkingTxt" style="width: 163px; height: 25px; left: 43.20px; top: 64.60px; position: absolute; text-align: center; color: black; font-size: 30px; font-family: Sunflower; font-weight: 500; word-wrap: break-word">직원이예요</div>
+            </div>
+            <div id ="visitor" class="EventBtn" style="width: 249.91px; height: 198.56px; left: 280px; top: 0px; position: absolute">
+                    <svg type="button" xmlns="http://www.w3.org/2000/svg" width="254" height="202" viewBox="0 0 254 202" fill="none">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M124.26 2.0154C66.1765 2.78383 14.9449 29.4329 4.06545 67.238C-8.36047 110.424 36.5611 151.895 104.353 159.836C104.367 159.902 104.343 160.001 104.337 160.096L103.948 160.109L51.1245 200.556L159.652 158.576L158.583 158.604L159.28 158.166L160.835 158.125L159.652 158.576L161.143 158.535V158.111H161.159C208.12 149.594 241.044 126.518 249.843 95.928C262.274 52.7242 217.297 11.2364 149.46 3.31733C140.981 2.32767 132.553 1.90724 124.256 2.017L124.26 2.0154Z" fill="white"/>
+                        <path d="M159.652 158.576L51.1245 200.556L103.948 160.109L104.337 160.096C104.343 160.001 104.367 159.902 104.353 159.836C36.5611 151.895 -8.36047 110.424 4.06545 67.238C14.9449 29.4329 66.1764 2.78383 124.26 2.0154L124.256 2.017C132.553 1.90724 140.981 2.32767 149.46 3.31733C217.297 11.2364 262.274 52.7242 249.843 95.928C241.044 126.518 208.12 149.594 161.159 158.111H161.143V158.535L159.652 158.576ZM159.652 158.576L158.583 158.604L159.28 158.166L160.835 158.125L159.652 158.576Z" stroke="black" stroke-width="2.5" stroke-linejoin="round"/>
+                      </svg>
+                <div class="ForeventBtntag" style="width: 195px; height: 81px; left: 26.69px; top: 42.05px; position: absolute"></div>
+                <div id="visitor_work" class="EventTxt" style="width: 207px; height: 34px; left: 20.69px; top: 66.05px; position: absolute; text-align: center; color: black; font-size: 30px; font-family: Sunflower; font-weight: 500; word-wrap: break-word">업무 보러 왔어요</div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 은행업무 선택 -->
+    <div id="bankSelect" class="BankSelectModal" style="width: 593px; height: 366px; left: 663px; top: 331px; position: absolute">
+        <div class="BankBgImg" style="width: 593px; height: 366px; left: 0px; top: 0px; position: absolute">
+            <div class="BankBg00" style="width: 593px; height: 366px; left: 0px; top: 0px; position: absolute; background: #C0AC67; border-radius: 35px"></div>
+            <div class="BankBg01" style="width: 577px; height: 351px; left: 8px; top: 7px; position: absolute; background: #E1D9BB; border-radius: 35px"></div>
+            <div class="BackBg02" style="width: 500px; height: 0px; left: 44px; top: 209px; position: absolute; border: 1px black dotted"></div>
+            <div class="BackBg02" style="width: 255px; height: 0px; left: 297px; top: 351px; position: absolute; transform: rotate(-90deg); transform-origin: 0 0; border: 1px black dotted"></div>
+            <div class="BankBg03" style="width: 550px; height: 0px; left: 23px; top: 84px; position: absolute; border: 0.75px black solid"></div>
+            <img class="BankImg" style="width: 98px; height: 97px; left: 44px; top: 235px; position: absolute" src="./assets/img/bank_img.png" />
+        </div>
+        <button id="saving" class="SavingBtn" style="width: 125px; height: 87px; left: 132px; top: 108px; position: absolute; background: #E1D9BB;
+            border: 0.50px #E1D9BB solid; text-align: center;
+            color: black; font-size: 25px; font-family: Sunflower; font-weight: 500; word-wrap: break-word">예금
+        </button>
+        <button id="withdraw" class="WithdrawBtn" style="width: 125px; height: 87px; left: 354px; top: 108px; position: absolute; background: #E1D9BB;
+            border: 0.50px #E1D9BB solid; text-align: center;
+            color: black; font-size: 25px; font-family: Sunflower; font-weight: 500; word-wrap: break-word">출금
+        </button>
+        <button id="getLoan" class="LoanBtn" style="width: 135px; height: 87px; left: 132px; top: 229px; position: absolute; background: #E1D9BB;
+            border: 0.50px #E1D9BB solid; text-align: center;
+            color: black; font-size: 25px; font-family: Sunflower; font-weight: 500; word-wrap: break-word">대출
+        </button>
+        <button id="repay" class="RepayBtn" style="width: 135px; height: 87px; left: 354px; top: 229px; position: absolute; background: #E1D9BB;
+            border: 0.50px #E1D9BB solid; text-align: center;
+            color: black; font-size: 25px; font-family: Sunflower; font-weight: 500; word-wrap: break-word">상환
+        </button>
+        <div class="SelectAskingTxt" style="width: 286px; height: 44px; left: 154px; top: 31px; position: absolute; text-align: center; color: black; font-size: 25px; font-family: Sunflower; font-weight: 500; word-wrap: break-word">원하시는 업무를 눌러주세요</div>
+    </div>
+
+    <div id="bankact" class="BankactModal" style="width: 593px; height: 366px; left: 663px; top: 331px; position: absolute">
+        <div class="BankBgImg" style="width: 593px; height: 366px; left: 0px; top: 0px; position: absolute">
+            <div class="BankBg00" style="width: 593px; height: 366px; left: 0px; top: 0px; position: absolute; background: #C0AC67; border-radius: 35px"></div>
+            <div class="BankBg01" style="width: 577px; height: 351px; left: 8px; top: 7px; position: absolute; background: #E1D9BB; border-radius: 35px"></div>
+            <div class="BackBg02" style="width: 560px; height: 0px; left: 17px; top: 95px; position: absolute; border: 1px black dotted"></div>
+            <div class="BankBg03" style="width: 370.01px; height: 0px; left: 23px; top: 235px; position: absolute; border: 0.75px black solid"></div>
+            <img class="MoneyBag1" style="width: 133px; height: 133px; left: 411px; top: 199px; position: absolute" src="./assets/img/money-bag.png" />
+        </div>
+        <input id="bankInput" class="BankActInput" type="number" style="width: 323px; height: 47px; left: 44px; top: 264px; position: absolute; color: black; font-size: 28px; border-radius: 26px; border: 1.25px #C0AC67 solid"/>
+        <button type="button" id = "bankActBtn" class="BankActBtn" style="width: 110px; height: 50px; left: 262px; top: 265px; position: absolute;
+            background: #C0AC67; border-radius: 30px; border: 1.25px #C0AC67 solid;
+            text-align: center; color: black; font-size: 25px; font-family: Sunflower; font-weight: 500; word-wrap: break-word">
+        입금</button>
+        <!-- <button type="button" id = "bankBackBtn"class="BankBackBtn" style="width: 139px; height: 51px; left: 221px; top: 268px; position: absolute"> -->
+            <!-- <div class="BankBackBtnbox" style="width: 139px; height: 51px; left: 0px; top: 0px; position: absolute; border-radius: 15px"></div>/ -->
+            <!-- <div class="BankBackTxt" style="width: 118px; height: 23px; left: 11px; top: 11px; position: absolute; text-align: center; color: black; font-size: 25px; font-family: Sunflower; font-weight: 500; word-wrap: break-word">이전화면</div> -->
+        <!-- </button> -->
+        <div id="user_money" class="MoneyNumTxt" style="width: 169px; height: 49px; left: 185px; top: 126px; position: absolute; text-align: right; color: black; font-size: 28px; font-family: Sunflower; font-weight: 500; word-wrap: break-word">180000 원</div>
+        <div class="MoneyTxt" style="width: 116px; height: 40px; left: 80px; top: 126px; position: absolute; color: black; font-size: 28px; font-family: Sunflower; font-weight: 500; word-wrap: break-word">통장잔액 : </div>
+        <div id="user_loan" class="LoanNumTxt" style="width: 189px; height: 49px; left: 165px; top: 175px; position: absolute; text-align: right; color: black; font-size: 28px; font-family: Sunflower; font-weight: 500; word-wrap: break-word"> 20000 원</div>
+        <div class="LoanTxt" style="width: 116px; height: 40px; left: 80px; top: 175px; position: absolute; color: black; font-size: 28px; font-family: Sunflower; font-weight: 500; word-wrap: break-word">대출 : </div>
+        <div id="user_name" class="BankUsername" style="width: 334px; height: 49px; left: 60px; top: 37px; position: absolute; color: black; font-size: 30px; font-family: Sunflower; font-weight: 500; word-wrap: break-word">kaka 님</div>
+    </div>
+
+    <div id = "quiz" class="QuizModal" style="width: 1350px; height: 888px; left: 285px; top: 84px; position: absolute">
+        <div class="Board" style="width: 1350px; height: 827px; left: 0px; top: 0px; position: absolute">
+          <img class="BoardImg" style="width: 1350px; height: 827px; left: 0px; top: 0px; position: absolute" src="./assets/img/board_img.png" />
+          <div class="BoardHidden" style="width: 153px; height: 102px; left: 217px; top: 652px; position: absolute; background: #005325"></div>
+        </div>
+        <div class="Question" style="width: 920px; height: 95px; left: 220px; top: 149px; position: absolute">
+          <div class="QTxt" style="left: 77px; top: 1px; position: absolute; color: white; font-size: 75px; font-family: Cafe24Supermagic-Bold-v1.0; font-weight: 400; word-wrap: break-word">수요가 높을수록 가격은 낮아진다 ?</div>
+          <div class="QLogo" style="width: 80px; height: 80px; left: 0px; top: 0px; position: absolute; text-align: center; color: white; font-size: 70px; font-family: Joti One; font-weight: 400; word-wrap: break-word">Q</div>
+        </div>
+        <div class="Yes" style="width: 267.96px; height: 333.79px; left: 352px; top: 364px; position: absolute">
+          <div class="YesBottom" style="width: 35.88px; height: 128.59px; left: 90.41px; top: 199.67px; position: absolute; transform: rotate(18.58deg); transform-origin: 0 0; background: #65B7D1"></div>
+          <div class="YesBtn" style="width: 213.37px; height: 219.31px; left: 65.71px; top: 0px; position: absolute; transform: rotate(18.58deg); transform-origin: 0 0">
+            <div class="X02" style="width: 213.37px; height: 219.31px; left: 0px; top: 0px; position: absolute; transform: rotate(18.58deg); transform-origin: 0 0; background: #65B7D1; border-radius: 113px; border: 0.50px #65B7D1 solid"></div>
+            <div class="X01" style="width: 164.87px; height: 169.47px; left: 15.52px; top: 31.50px; position: absolute; transform: rotate(18.58deg); transform-origin: 0 0; background: white; border-radius: 115px"></div>
+            <div class="X00" style="width: 127.05px; height: 130.59px; left: 26.71px; top: 57.35px; position: absolute; transform: rotate(18.58deg); transform-origin: 0 0; background: #65B7D1; border-radius: 113px"></div>
+            <div class="O" style="width: 90.20px; height: 141.55px; left: 46.29px; top: 59.72px; position: absolute; transform: rotate(18.58deg); transform-origin: 0 0; text-align: center; color: white; font-size: 96px; font-family: Inter; font-weight: 500; word-wrap: break-word">O</div>
+            <button id="y_btn" class="X04" style="width: 203.35px; height: 214.42px; left: 4.53px; top: 4px; position: absolute; transform: rotate(18.58deg); transform-origin: 0 0; background: rgba(4.25, 4.25, 4.25, 0); border-radius: 113px; border: 0.50px rgba(0, 0, 0, 0) solid"></button>
+          </div>
+        </div>
+        <div class="No" style="width: 263.03px; height: 335.89px; left: 680px; top: 372px; position: absolute">
+          <div class="XBottom" style="width: 35.86px; height: 128.68px; left: 128.40px; top: 211.89px; position: absolute; transform: rotate(-16.52deg); transform-origin: 0 0; background: #E93636"></div>
+          <div class="NoBtn" style="width: 213.22px; height: 219.45px; left: 0px; top: 60.64px; position: absolute; transform: rotate(-16.52deg); transform-origin: 0 0">
+            <div class="X02" style="width: 213.22px; height: 219.45px; left: 0px; top: 0px; position: absolute; transform: rotate(-16.52deg); transform-origin: 0 0; background: #E93636; border-radius: 113px; border: 0.50px #E93636 solid"></div>
+            <div class="X01" style="width: 164.76px; height: 169.58px; left: 29.89px; top: 17.14px; position: absolute; transform: rotate(-16.52deg); transform-origin: 0 0; background: white; border-radius: 100px"></div>
+            <div class="X00" style="width: 126.96px; height: 130.67px; left: 53.14px; top: 32.09px; position: absolute; transform: rotate(-16.52deg); transform-origin: 0 0; background: #E93636; border-radius: 100px"></div>
+            <div class="X" style="width: 90.13px; height: 141.65px; left: 69.69px; top: 24.73px; position: absolute; transform: rotate(-16.52deg); transform-origin: 0 0; text-align: center; color: white; font-size: 96px; font-family: Inter; font-weight: 500; word-wrap: break-word">X</div>
+            <button id="n_btn" class="X04" style="width: 203.35px; height: 214.42px; left: 2px; top: 2.18px; position: absolute; transform: rotate(-16.52deg); transform-origin: 0 0; background: rgba(0, 0, 0, 0); border-radius: 113px; border: 0.50px rgba(0, 0, 0, 0) solid"></button>
+          </div>
+        </div>
+        <div class="Timer" style="width: 130px; height: 167px; left: 1010px; top: 581px; position: absolute">
+          <div class="TimerImg" style="width: 130px; height: 151.33px; left: 0px; top: 0px; position: absolute">
+            <div class="TimerIcon" style="width: 130px; height: 151.33px; left: 0px; top: 0px; position: absolute; background: white"></div>
+            <div class="TimerHidden" style="width: 91.56px; height: 95.41px; left: 18.84px; top: 38.47px; position: absolute; background: #005325; border-radius: 150px"></div>
+          </div>
+          <div class="TimerNum" style="width: 84.10px; height: 157px; left: 23px; top: 10px; position: absolute; text-align: center; color: white; font-size: 85px; font-family: Inter; font-weight: 500; word-wrap: break-word">3</div>
+        </div>
+        <div id="answer" class="AnswerModal" style="width: 1076px; height: 871px; left: 147px; top: 17px; position: absolute">
+          <div class="PostIt" style="width: 1076px; height: 871px; left: 0px; top: 0px; position: absolute">
+            <div class="PostItPin" style="width: 966.21px; height: 693.82px; left: 128.49px; top: -0px; position: absolute; transform: rotate(11.29deg); transform-origin: 0 0">
+              <div class="PostitBody" style="width: 883.44px; height: 513.57px; left: -35.18px; top: 186.69px; position: absolute; transform: rotate(-1.18deg); transform-origin: 0 0; background: #FFECAA"></div>
+              <div class="Group" style="width: 107.20px; height: 107.89px; left: 369.99px; top: 168.62px; position: absolute; transform: rotate(11.29deg); transform-origin: 0 0">
+                <div class="Vector" style="width: 99.05px; height: 97.74px; left: -1.88px; top: 9.98px; position: absolute; transform: rotate(11.29deg); transform-origin: 0 0; background: #ECCA3E"></div>
+                <div class="Vector" style="width: 99.05px; height: 97.74px; left: 7.99px; top: 1.60px; position: absolute; transform: rotate(11.29deg); transform-origin: 0 0; background: #D40000"></div>
+              </div>
+              <div class="Group" style="width: 98.63px; height: 97.72px; left: 381.33px; top: 167.07px; position: absolute; transform: rotate(11.29deg); transform-origin: 0 0">
+                <div class="Vector" style="width: 58.08px; height: 56.87px; left: 32.20px; top: 48.08px; position: absolute; transform: rotate(11.29deg); transform-origin: 0 0; background: #EE0000"></div>
+                <div class="Vector" style="width: 98.11px; height: 97.08px; left: 0px; top: 0px; position: absolute; transform: rotate(11.29deg); transform-origin: 0 0; background: #FF0000"></div>
+                <div class="Vector" style="width: 67.10px; height: 51.29px; left: 13.41px; top: 29.63px; position: absolute; transform: rotate(11.29deg); transform-origin: 0 0; background: #AA0000"></div>
+              </div>
+              <div class="Group" style="width: 80.14px; height: 79.02px; left: 403.96px; top: 160.03px; position: absolute; transform: rotate(11.29deg); transform-origin: 0 0">
+                <div class="Vector" style="width: 77.42px; height: 76.40px; left: -0.48px; top: 2.57px; position: absolute; transform: rotate(11.29deg); transform-origin: 0 0; background: #D40000"></div>
+                <div class="Vector" style="width: 77.42px; height: 76.40px; left: 2.67px; top: 0.53px; position: absolute; transform: rotate(11.29deg); transform-origin: 0 0; background: #FF0000"></div>
+              </div>
+            </div>
+            <div class="Close" style="width: 26.14px; height: 30.47px; left: 900.53px; top: 207.13px; position: absolute; border-radius: 26px; border: 2.75px #938686 solid"></div>
+          </div>
+          <div class="AnswerSheet" style="width: 759.98px; height: 235.05px; left: 160.07px; top: 349.68px; position: absolute; color: black; font-size: 50px; font-family: Cafe24Supermagic-Bold-v1.0; font-weight: 400; word-wrap: break-word">수요가 높다는 것은 많은 사람들이 같은 물건이나 서비스를 원한다는 뜻이에요. 그래서 수요가 높을수록 판매자들은 가격을 낮추는 경우가 많아요. 사람들이 더 많이 사고 싶어하기 때문이에요!</div>
+          <div class="ShowAnswer" style="width: 184.86px; height: 75.09px; left: 186.77px; top: 263.71px; position: absolute; color: black; font-size: 50px; font-family: Cafe24Supermagic-Bold-v1.0; font-weight: 400; word-wrap: break-word">정답 : O</div>
+        </div>
+      </div>
+
+      <!-- 임시로 만든 policequiz -->
+      <div id="p_quiz" class="QuizModal" style="width: 1350px; height: 888px; left: 285px; top: 84px; position: absolute">
+        <div class="Board" style="width: 1350px; height: 827px; left: 0px; top: 0px; position: absolute">
+          <img class="BoardImg" style="width: 1350px; height: 827px; left: 0px; top: 0px; position: absolute" src="./assets/img/board_img.png" />
+          <div class="BoardHidden" style="width: 153px; height: 102px; left: 217px; top: 652px; position: absolute; background: #005325"></div>
+        </div>
+        <div class="Question" style="width: 920px; height: 95px; left: 220px; top: 149px; position: absolute">
+          <div id="police_quiz" class="QTxt" style="left: 77px; top: 1px; position: absolute; color: white; font-size: 75px; font-family: 'Cafe24Supermagic-Bold-v1.0'; font-weight: 400; word-wrap: break-word">수요가 높을수록 가격은 낮아진다 ?</div>
+          <div class="QLogo" style="width: 80px; height: 80px; left: 0px; top: 0px; position: absolute; text-align: center; color: white; font-size: 70px; font-family: Joti One; font-weight: 400; word-wrap: break-word">Q</div>
+        </div>
+        <div class="Yes" style="width: 267.96px; height: 333.79px; left: 352px; top: 364px; position: absolute">
+          <div class="YesBottom" style="width: 35.88px; height: 128.59px; left: 90.41px; top: 199.67px; position: absolute; transform: rotate(18.58deg); transform-origin: 0 0; background: #65B7D1"></div>
+          <div class="YesBtn" style="width: 213.37px; height: 219.31px; left: 65.71px; top: 0px; position: absolute; transform: rotate(18.58deg); transform-origin: 0 0">
+            <div class="X02" style="width: 213.37px; height: 219.31px; left: 0px; top: 0px; position: absolute; transform: rotate(18.58deg); transform-origin: 0 0; background: #65B7D1; border-radius: 113px; border: 0.50px #65B7D1 solid"></div>
+            <div class="X01" style="width: 164.87px; height: 169.47px; left: 15.52px; top: 31.50px; position: absolute; transform: rotate(18.58deg); transform-origin: 0 0; background: white; border-radius: 115px"></div>
+            <div class="X00" style="width: 127.05px; height: 130.59px; left: 26.71px; top: 57.35px; position: absolute; transform: rotate(18.58deg); transform-origin: 0 0; background: #65B7D1; border-radius: 113px"></div>
+            <div class="O" style="width: 90.20px; height: 141.55px; left: 46.29px; top: 59.72px; position: absolute; transform: rotate(18.58deg); transform-origin: 0 0; text-align: center; color: white; font-size: 96px; font-family: Inter; font-weight: 500; word-wrap: break-word">O</div>
+            <button id="pol_y_btn" class="X04" style="width: 203.35px; height: 214.42px; left: 4.53px; top: 4px; position: absolute; transform: rotate(18.58deg); transform-origin: 0 0; background: rgba(4.25, 4.25, 4.25, 0); border-radius: 113px; border: 0.50px rgba(0, 0, 0, 0) solid"></button>
+          </div>
+        </div>
+        <div class="No" style="width: 263.03px; height: 335.89px; left: 680px; top: 372px; position: absolute">
+          <div class="XBottom" style="width: 35.86px; height: 128.68px; left: 128.40px; top: 211.89px; position: absolute; transform: rotate(-16.52deg); transform-origin: 0 0; background: #E93636"></div>
+          <div class="NoBtn" style="width: 213.22px; height: 219.45px; left: 0px; top: 60.64px; position: absolute; transform: rotate(-16.52deg); transform-origin: 0 0">
+            <div class="X02" style="width: 213.22px; height: 219.45px; left: 0px; top: 0px; position: absolute; transform: rotate(-16.52deg); transform-origin: 0 0; background: #E93636; border-radius: 113px; border: 0.50px #E93636 solid"></div>
+            <div class="X01" style="width: 164.76px; height: 169.58px; left: 29.89px; top: 17.14px; position: absolute; transform: rotate(-16.52deg); transform-origin: 0 0; background: white; border-radius: 100px"></div>
+            <div class="X00" style="width: 126.96px; height: 130.67px; left: 53.14px; top: 32.09px; position: absolute; transform: rotate(-16.52deg); transform-origin: 0 0; background: #E93636; border-radius: 100px"></div>
+            <div class="X" style="width: 90.13px; height: 141.65px; left: 69.69px; top: 24.73px; position: absolute; transform: rotate(-16.52deg); transform-origin: 0 0; text-align: center; color: white; font-size: 96px; font-family: Inter; font-weight: 500; word-wrap: break-word">X</div>
+            <button id="pol_n_btn" class="X04" style="width: 203.35px; height: 214.42px; left: 2px; top: 2.18px; position: absolute; transform: rotate(-16.52deg); transform-origin: 0 0; background: rgba(0, 0, 0, 0); border-radius: 113px; border: 0.50px rgba(0, 0, 0, 0) solid"></button>
+          </div>
+        </div>
+        <div class="Timer" style="width: 130px; height: 167px; left: 1010px; top: 581px; position: absolute">
+          <div class="TimerImg" style="width: 130px; height: 151.33px; left: 0px; top: 0px; position: absolute">
+            <div class="TimerIcon" style="width: 130px; height: 151.33px; left: 0px; top: 0px; position: absolute; background: white"></div>
+            <div class="TimerHidden" style="width: 91.56px; height: 95.41px; left: 18.84px; top: 38.47px; position: absolute; background: #005325; border-radius: 150px"></div>
+          </div>
+          <div class="TimerNum" style="width: 84.10px; height: 157px; left: 23px; top: 10px; position: absolute; text-align: center; color: white; font-size: 85px; font-family: Inter; font-weight: 500; word-wrap: break-word">3</div>
+        </div>
+        <!-- 필요: DB추가 요망 -->
+        <!-- <div id="answer" class="AnswerModal" style="width: 1076px; height: 871px; left: 147px; top: 17px; position: absolute">
+          <div class="PostIt" style="width: 1076px; height: 871px; left: 0px; top: 0px; position: absolute">
+            <div class="PostItPin" style="width: 966.21px; height: 693.82px; left: 128.49px; top: -0px; position: absolute; transform: rotate(11.29deg); transform-origin: 0 0">
+              <div class="PostitBody" style="width: 883.44px; height: 513.57px; left: -35.18px; top: 186.69px; position: absolute; transform: rotate(-1.18deg); transform-origin: 0 0; background: #FFECAA"></div>
+              <div class="Group" style="width: 107.20px; height: 107.89px; left: 369.99px; top: 168.62px; position: absolute; transform: rotate(11.29deg); transform-origin: 0 0">
+                <div class="Vector" style="width: 99.05px; height: 97.74px; left: -1.88px; top: 9.98px; position: absolute; transform: rotate(11.29deg); transform-origin: 0 0; background: #ECCA3E"></div>
+                <div class="Vector" style="width: 99.05px; height: 97.74px; left: 7.99px; top: 1.60px; position: absolute; transform: rotate(11.29deg); transform-origin: 0 0; background: #D40000"></div>
+              </div>
+              <div class="Group" style="width: 98.63px; height: 97.72px; left: 381.33px; top: 167.07px; position: absolute; transform: rotate(11.29deg); transform-origin: 0 0">
+                <div class="Vector" style="width: 58.08px; height: 56.87px; left: 32.20px; top: 48.08px; position: absolute; transform: rotate(11.29deg); transform-origin: 0 0; background: #EE0000"></div>
+                <div class="Vector" style="width: 98.11px; height: 97.08px; left: 0px; top: 0px; position: absolute; transform: rotate(11.29deg); transform-origin: 0 0; background: #FF0000"></div>
+                <div class="Vector" style="width: 67.10px; height: 51.29px; left: 13.41px; top: 29.63px; position: absolute; transform: rotate(11.29deg); transform-origin: 0 0; background: #AA0000"></div>
+              </div>
+              <div class="Group" style="width: 80.14px; height: 79.02px; left: 403.96px; top: 160.03px; position: absolute; transform: rotate(11.29deg); transform-origin: 0 0">
+                <div class="Vector" style="width: 77.42px; height: 76.40px; left: -0.48px; top: 2.57px; position: absolute; transform: rotate(11.29deg); transform-origin: 0 0; background: #D40000"></div>
+                <div class="Vector" style="width: 77.42px; height: 76.40px; left: 2.67px; top: 0.53px; position: absolute; transform: rotate(11.29deg); transform-origin: 0 0; background: #FF0000"></div>
+              </div>
+            </div>
+            <div class="Close" style="width: 26.14px; height: 30.47px; left: 900.53px; top: 207.13px; position: absolute; border-radius: 26px; border: 2.75px #938686 solid"></div>
+          </div>
+          <div class="AnswerSheet" style="width: 759.98px; height: 235.05px; left: 160.07px; top: 349.68px; position: absolute; color: black; font-size: 50px; font-family: 'Cafe24Supermagic-Bold-v1.0'; font-weight: 400; word-wrap: break-word">수요가 높다는 것은 많은 사람들이 같은 물건이나 서비스를 원한다는 뜻이에요. 그래서 수요가 높을수록 판매자들은 가격을 낮추는 경우가 많아요. 사람들이 더 많이 사고 싶어하기 때문이에요!</div>
+          <div class="ShowAnswer" style="width: 184.86px; height: 75.09px; left: 186.77px; top: 263.71px; position: absolute; color: black; font-size: 50px; font-family: 'Cafe24Supermagic-Bold-v1.0'; font-weight: 400; word-wrap: break-word">정답 : O</div>
+        </div> -->
+      </div>
+
+
+      <!-- 게임종료 -->
+      <div id="final" class="FinalModal" style="width: 1277px; height: 909px; left: 317px; top: 88px; position: absolute">
+        <div class="End" style="width: 909px; height: 1277px; left: 0px; top: 909px; position: absolute; transform: rotate(-90deg); transform-origin: 0 0; background: linear-gradient(0deg, #C6FF24 0%, #C6FF24 100%), linear-gradient(0deg, rgba(0, 0, 0, 0.20) 0%, rgba(0, 0, 0, 0.20) 100%); border-radius: 21px"></div>
+        <div class="GameOver" style="width: 493.63px; height: 494.67px; left: 96px; top: 200px; position: absolute; text-align: center"><span style="color: white; font-size: 160px; font-family: Giants-Inline; font-weight: 400; word-wrap: break-word">GAME</span><span style="color: #FF0000; font-size: 160px; font-family: Giants-Inline; font-weight: 400; word-wrap: break-word">OVER</span></div>
+        <div class="WinnerGroups" style="width: 520px; height: 275.24px; left: 659px; top: 368.68px; position: absolute">
+          <div class="StWinner" style="width: 520px; height: 45.70px; left: 0px; top: 0px; position: absolute">
+            <div class="StWho" style="width: 177px; height: 45.70px; left: 110px; top: 0px; position: absolute; color: black; font-size: 45px; font-family: TheJamsil5Bold; font-weight: 400; word-wrap: break-word">1위는 누구</div>
+            <div class="St" style="width: 53px; height: 45.70px; left: 0px; top: 0px; position: absolute; color: black; font-size: 45px; font-family: TheJamsil5Bold; font-weight: 400; word-wrap: break-word">1위</div>
+            <div class="StScore" style="width: 176px; height: 45.70px; left: 344px; top: 0px; position: absolute; color: black; font-size: 45px; font-family: TheJamsil5Bold; font-weight: 400; word-wrap: break-word">1위는 얼마</div>
+          </div>
+          <div class="ThWinner" style="width: 520px; height: 45.70px; left: 0px; top: 229.54px; position: absolute">
+            <div class="ThWho" style="width: 177px; height: 45.70px; left: 110px; top: 0px; position: absolute; color: black; font-size: 45px; font-family: TheJamsil5Bold; font-weight: 400; word-wrap: break-word">1위는 누구</div>
+            <div class="Th" style="width: 53px; height: 45.70px; left: 0px; top: 0px; position: absolute; color: black; font-size: 45px; font-family: TheJamsil5Bold; font-weight: 400; word-wrap: break-word">2위</div>
+            <div class="ThScore" style="width: 176px; height: 45.70px; left: 344px; top: 0px; position: absolute; color: black; font-size: 45px; font-family: TheJamsil5Bold; font-weight: 400; word-wrap: break-word">1위는 얼마</div>
+          </div>
+          <div class="RdWinner" style="width: 520px; height: 45.70px; left: 0px; top: 155.39px; position: absolute">
+            <div class="RdWho" style="width: 177px; height: 45.70px; left: 110px; top: 0px; position: absolute; color: #C82D2D; font-size: 45px; font-family: TheJamsil5Bold; font-weight: 400; word-wrap: break-word">1위는 누구</div>
+            <div class="Rd" style="width: 53px; height: 45.70px; left: 0px; top: 0px; position: absolute; color: #C82D2D; font-size: 45px; font-family: TheJamsil5Bold; font-weight: 400; word-wrap: break-word">3위</div>
+            <div class="RdScore" style="width: 176px; height: 45.70px; left: 344px; top: 0px; position: absolute; color: #C82D2D; font-size: 45px; font-family: TheJamsil5Bold; font-weight: 400; word-wrap: break-word">1위는 얼마</div>
+          </div>
+          <div class="NdWinner" style="width: 520px; height: 45.70px; left: 0px; top: 79.22px; position: absolute">
+            <div class="NdWho" style="width: 177px; height: 45.70px; left: 110px; top: 0px; position: absolute; color: black; font-size: 45px;font-family: TheJamsil5Bold; font-weight: 400; word-wrap: break-word">1위는 누구</div>
+            <div class="Nd" style="width: 53px; height: 45.70px; left: 0px; top: 0px; position: absolute; color: black; font-size: 45px; font-family: TheJamsil5Bold; font-weight: 400; word-wrap: break-word">4위</div>
+            <div class="NdMoney" style="width: 176px; height: 45.70px; left: 344px; top: 0px; position: absolute; color: black; font-size: 45px; font-family: TheJamsil5Bold; font-weight: 400; word-wrap: break-word">1위는 얼마</div>
+          </div>
+        </div>
+        
+        <!-- 재산명세 -->
+        <div id = "result" class="ResultModal" style="width: 701.56px; height: 741.81px; left: 561.74px; top: 96.22px; position: absolute">
+          <div class="ResultBg" style="width: 642.54px; height: 689.24px; left: 61.41px; top: -0px; position: absolute; transform: rotate(4.94deg); transform-origin: 0 0">
+            <div class="RBgPs01" style="width: 642.54px; height: 689.24px; left: 0px; top: 0px; position: absolute; transform: rotate(4.94deg); transform-origin: 0 0; background: radial-gradient(75.87% 94.12% at -43.91% 268.94%, #B3B3B3 0%, white 100%)"></div>
+            <div class="RBgPs00" style="width: 642.54px; height: 689.24px; left: 0px; top: 0px; position: absolute; transform: rotate(4.94deg); transform-origin: 0 0; background: radial-gradient(65.81% 175.40% at 140.89% -703.29%, #CCCCCC 0%, rgba(255, 255, 255, 0.57) 100%)"></div>
+            <div class="Group" style="width: 71.82px; height: 96.29px; left: 229.36px; top: 48.11px; position: absolute; transform: rotate(4.95deg); transform-origin: 0 0">
+              <div class="Vector" style="width: 67.88px; height: 40.02px; left: -3.20px; top: 56.20px; position: absolute; transform: rotate(4.95deg); transform-origin: 0 0; background: #4D4D4D; box-shadow: 1.135779619216919px 1.135779619216919px 1.135779619216919px; filter: blur(1.14px)"></div>
+              <div class="Vector" style="width: 71.82px; height: 79.10px; left: -0.51px; top: 5.74px; position: absolute; transform: rotate(4.95deg); transform-origin: 0 0; background: #FF0000"></div>
+              <div class="Vector" style="width: 53.49px; height: 36.98px; left: 8.90px; top: 0.77px; position: absolute; transform: rotate(4.95deg); transform-origin: 0 0; background: #FF8080"></div>
+              <div class="Vector" style="width: 33.27px; height: 49.67px; left: 33.96px; top: 36.54px; position: absolute; transform: rotate(4.95deg); transform-origin: 0 0; opacity: 0.56; background: #CCCCCC"></div>
+              <div class="Vector" style="width: 51.85px; height: 35.84px; left: 9.36px; top: 1.46px; position: absolute; transform: rotate(4.95deg); transform-origin: 0 0; opacity: 0.62; background: linear-gradient(229deg, #FF0000 0%, #666666 100%)"></div>
+            </div>
+          </div>
+          <div class="ResultMsg" style="width: 364.85px; height: 423.80px; left: 143.02px; top: 204.77px; position: absolute; transform: rotate(-7.41deg); transform-origin: 0 0">
+            <div class="RTitle" style="width: 143.76px; height: 46.52px; left: 58.22px; top: 372.87px; position: absolute; transform: rotate(-7.41deg); transform-origin: 0 0; text-align: center; color: black; font-size: 35px; font-family: LINESeedKR-Bd; font-weight: 700; word-wrap: break-word">자산 총점</div>
+            <div class="RTitleLoan" style="width: 101.92px; height: 46.52px; left: 85.83px; top: 282.03px; position: absolute; transform: rotate(-7.41deg); transform-origin: 0 0; text-align: center; color: black; font-size: 35px; font-family: LINESeedKR-Bd; font-weight: 700; word-wrap: break-word">대출금</div>
+            <div class="RTitleHousing" style="width: 143.76px; height: 46.52px; left: 15.29px; top: 114.04px; position: absolute; transform: rotate(-7.41deg); transform-origin: 0 0; text-align: center; color: black; font-size: 35px; font-family: LINESeedKR-Bd; font-weight: 700; word-wrap: break-word">실물 자산</div>
+            <div class="RTitleInt" style="width: 69.73px; height: 46.52px; left: 106.22px; top: 210.50px; position: absolute; transform: rotate(-7.41deg); transform-origin: 0 0; text-align: center; color: black; font-size: 35px; font-family: LINESeedKR-Bd; font-weight: 700; word-wrap: break-word">능력</div>
+            <div class="RTitleHp" style="width: 68.66px; height: 46.52px; left: 98.27px; top: 159.40px; position: absolute; transform: rotate(-7.41deg); transform-origin: 0 0; text-align: center; color: black; font-size: 35px; font-family: LINESeedKR-Bd; font-weight: 700; word-wrap: break-word">체력</div>
+            <div class="RTitleSavings" style="width: 69.73px; height: 46.52px; left: 79.78px; top: 46.68px; position: absolute; transform: rotate(-7.41deg); transform-origin: 0 0; text-align: center; color: black; font-size: 35px; font-family: LINESeedKR-Bd; font-weight: 700; word-wrap: break-word">예금</div>
+            <div class="RTitleMoney" style="width: 68.66px; height: 46.52px; left: 67.38px; top: -5.90px; position: absolute; transform: rotate(-7.41deg); transform-origin: 0 0; text-align: center; color: black; font-size: 35px; font-family: LINESeedKR-Bd; font-weight: 700; word-wrap: break-word">잔액</div>
+            <div class="RScoreMoney" style="width: 237.10px; height: 46.52px; left: 120.60px; top: -15.69px; position: absolute; transform: rotate(-7.41deg); transform-origin: 0 0; text-align: right; color: black; font-size: 35px;  font-family: NeoDunggeunmo; font-weight: 700; word-wrap: break-word">10,000 </div>
+            <div class="RScoreSavings" style="width: 237.10px; height: 46.52px; left: 129.82px; top: 36.39px; position: absolute; transform: rotate(-7.41deg); transform-origin: 0 0; text-align: right; color: black; font-size: 35px; font-family: NeoDunggeunmo; font-weight: 700; word-wrap: break-word">10,000 </div>
+            <div class="RScoreHousing" style="width: 237.10px; height: 46.52px; left: 137.45px; top: 95.82px; position: absolute; transform: rotate(-7.41deg); transform-origin: 0 0; text-align: right; color: black; font-size: 35px;  font-family: NeoDunggeunmo; font-weight: 700; word-wrap: break-word">10,000 </div>
+            <div class="RScoreHp" style="width: 237.10px; height: 46.52px; left: 145.07px; top: 149.96px; position: absolute; transform: rotate(-7.41deg); transform-origin: 0 0; text-align: right; color: black; font-size: 35px;  font-family: NeoDunggeunmo; font-weight: 700; word-wrap: break-word">10,000 </div>
+            <div class="RScoreInt" style="width: 237.10px; height: 46.52px; left: 151.58px; top: 200.99px; position: absolute; transform: rotate(-7.41deg); transform-origin: 0 0; text-align: right; color: black; font-size: 35px;  font-family: NeoDunggeunmo; font-weight: 700; word-wrap: break-word">10,000 </div>
+            <div class="RScoreLoan" style="width: 237.10px; height: 46.52px; left: 164.46px; top: 268.64px; position: absolute; transform: rotate(-7.41deg); transform-origin: 0 0; text-align: right; color: black; font-size: 35px;  font-family: NeoDunggeunmo; font-weight: 700; word-wrap: break-word">10,000 </div>
+            <div class="RScore" style="width: 237.10px; height: 46.52px; left: 176.26px; top: 353.20px; position: absolute; transform: rotate(-7.41deg); transform-origin: 0 0; text-align: right; color: black; font-size: 35px;  font-family: NeoDunggeunmo; font-weight: 700; word-wrap: break-word">10,000 </div>
+          </div>
+        </div>
+      </div>
+
+      <div id = "mypage" class="Mypage" style="display:none; width: 858px; height: 582px; left: 521px; top: 198px; position: absolute">
+        <div class="MpBg01" style="width: 858px; height: 582px; left: 0px; top: 0px; position: absolute; background: #9BC12C"></div>
+        <div class="MpBg00" style="width: 812px; height: 541px; left: 20px; top: 19px; position: absolute; background: #F9F9F9; border-radius: 25px"></div>
+        <img class="F3eb78594a9afb6a28a9f2940601" style="width: 280px; height: 271px; left: 36px; top: 283px; position: absolute" src="./assets/img/mypage.gif" />
+        <div class="MpSavings" style="width: 344px; height: 81px; left: 514px; top: 145px; position: absolute">
+            <div class="MpInput00" style="width: 290px; height: 81px; left: 0px; top: 0px; position: absolute; background: #CBB55C; border: 0.50px black solid"></div>
+            <div id="mypage_saving" class="user_savings" style="width: 270px; height: 62px; left: 11px; top: 10px; position: absolute; background: #ECCA3E; border-radius: 12px; border: 0.50px black solid; font-size: 43px; font-family: NeoDunggeunmo;">₩ 500000</div>
+        </div>
+        <div id="mp_limit" class="MpLimit" style="width: 304px; height: 81px; left: 514px; top: 242px; position: absolute">
+            <div class="MpInput00" style="width: 290px; height: 81px; left: 0px; top: 0px; position: absolute; background: #CBB55C; border: 0.50px black solid"></div>
+            <div id="mypage_loan" class="MpInput01" style="width: 270px; height: 62px; left: 11px; top: 10px; position: absolute; background: #ECCA3E; border-radius: 12px; border: 0.50px black solid; font-size: 43px; font-family: NeoDunggeunmo;">₩ 50000</div>
+        </div>
+        <div id="mp_loan"  class="MpLoan" style="width: 344px; height: 81px; left: 514px; top: 339px; position: absolute">
+            <div class="MpInput00" style="width: 290px; height: 81px; left: 0px; top: 0px; position: absolute; background: #CBB55C; border: 0.50px black solid"></div>
+            <div id="mypage_limit" class="MpInput01" style="width: 270px; height: 62px; left: 11px; top: 10px; position: absolute; background: #ECCA3E; border-radius: 12px; border: 0.50px black solid; font-size: 43px; font-family: NeoDunggeunmo;">₩ 500000</div>
+
+        </div>
+        <div class="MpHousing" style="width: 344px; height: 81px; left: 514px; top: 436px; position: absolute">
+            <div class="MpInput00" style="width: 290px; height: 81px; left: 0px; top: 0px; position: absolute; background: #CBB55C; border: 0.50px black solid"></div>
+            <div id="mypage_housing" class="user_housing" style="width: 270px; height: 62px; left: 10px; top: 10px; position: absolute; background: #ECCA3E; border-radius: 12px; border: 0.50px black solid; font-size: 43px; font-family: NeoDunggeunmo;">₩ 50000</div>
+        </div>
+        <div style="left: 326px; top: 260px; position: absolute; text-align: right; color: black; font-size: 45px; font-family: 'LINESeedKR-Bd'; font-weight: 400; word-wrap: break-word">잔여 한도</div>
+        <div style="width: 170px; left: 317px; top: 357px; position: absolute; text-align: right; color: black; font-size: 45px; font-family: 'LINESeedKR-Bd'; font-weight: 400; word-wrap: break-word">대출금</div>
+        <div  style="width: 170px; left: 317px; top: 454px; position: absolute; text-align: right; color: black; font-size: 45px; font-family: 'LINESeedKR-Bd'; font-weight: 400; word-wrap: break-word">집값</div>
+        <div id="mypage_job" style="width: 170px; left: 90px; top: 126px; position: absolute; text-align: right; color: black; font-size: 45px; font-family: BM HANNA_TTF; font-weight: 400; word-wrap: break-word">직업</div>
+        <div  style="left: 402px; top: 166px; position: absolute; text-align: right; color: black; font-size: 45px; font-family: 'LINESeedKR-Bd'; font-weight: 400; word-wrap: break-word">적금</div>
+        <div id="mypage_name" style="width: 561px; left: 78px; top: 63px; position: absolute; color: black; font-size: 55px; font-family: 'LINESeedKR-Bd'; font-weight: 400; word-wrap: break-word">닉네임 명</div>
+        <div class="Level" style="width: 213px; height: 66px; left: 611px; top: 63px; position: absolute">
+            <div class="s01" style="width: 85px; height: 66px; left: 0px; top: 0px; position: absolute; color: black; font-size: 55px; font-family: BM HANNA_TTF; font-weight: 400; word-wrap: break-word">⭐️</div>
+            <div class="s02" style="width: 85px; height: 66px; left: 64px; top: 0px; position: absolute; color: black; font-size: 55px; font-family: BM HANNA_TTF; font-weight: 400; word-wrap: break-word">⭐️</div>
+            <div class="s03" style="width: 85px; height: 66px; left: 128px; top: 0px; position: absolute; color: black; font-size: 55px; font-family: BM HANNA_TTF; font-weight: 400; word-wrap: break-word">⭐️</div>
+        </div>
+      </div>
+     
+      <div id="loading" class="Loading" style="width: 1280px; height: 930px; left: 314px; top: 75px; position: absolute;">
+          <div class="Loading" style="width: 1280px; height: 930px; left: 0px; top: 0px; position: absolute; background: #404040; border: 0.50px black solid"></div>
+          <img class="Loading1" style="width: 355px; height: 379.63px; left: 431px; top: 275px; position: absolute" src="./assets/img/loading.gif" />
+      </div>
+
+<script>
+  // const nick = document.getElementById('nick-name');
+  const user_name = document.getElementById('nick-name');
+  const user_level = document.getElementById('lever');
+  const user_ability = document.getElementById('ability')
+  const user_health = document.getElementById('health');
+  const user_money = document.getElementById('money');
+  const timer_min = document.getElementById('min');
+  const timer_sec = document.getElementById('sec');
+  const curr_winner = document.getElementById('cur_winner');
+
+  //마이페이지 관련 선언 필요함
+  //은행 모달
+  const bank_input = document.getElementById('BankActInput');
+  const bank_name = document.getElementById('BankUsername');
+  const bank_money = document.getElementById('MoneyNumTxt');
+  const bank_loan = document.getElementById('LoanNumTxt')
+  const bank_act_btn = document.getElementById('BankActTxt')
+
+  const sel_staff_txt = document.getElementById('WorkingTxt');
+  const sle_visit_txt = document.getElementById('EventTxt')  
+
+  const name = getCookie('nickname')
+  user_name.innerHTML = `${name}`;
+
+  function getCookie(name) {
+      const value = '; ' + document.cookie;
+      const parts = value.split('; ' + name + '=');
+      if (parts.length === 2) return parts.pop().split(';').shift();
+  }
+      
+fetch('/getData')
+  .then(response => response.json())
+  .then(data =>{
+      // const limit = data.limit;
+      // const loan = data.loan;
+      // const housing = data.housing;
+      const ability = data.ability;
+      // const savings = data.savings;
+      const level = data.level;
+
+        user_ability.innerHTML = `${ability}`;
+      // user_money.innerHTML = `${money}`;
+      // limit_elem.innerHTML = `${limit}`;
+      // loan_elem.innerHTML = `${loan}`;
+      // level_elem.innerHTML = `${level}`;
+
+      //마이페이지 생기면
+  })
+
+const chatIcon = document.querySelector('.ChatIcon').addEventListener("click", ()=>{
+  const chat = document.getElementById('chat');
+  if (chat.style.display ==="block"){
+      chat.style.display ="none"
+  }else {
+      chat.style.display= "block"
+  }
+})
+const mypageIcon = document.querySelector('.MypageIcon').addEventListener("click", ()=>{
+const mypage = document.getElementById('mypage');
+if (mypage.style.display ==="block"){
+    mypage.style.display ="none"
+}else {
+    mypage.style.display= "block"
+}
+})
+
+function openShop() {
+  shop.style.display = "block";
+  const inHigh = document.getElementById('inHigh');
+  const inLow = document.getElementById('inLow');
+  const energy = document.getElementById('energy');
+  const food = document.getElementById('food');
+  const book = document.getElementById('book');
+
+  inHigh.addEventListener('click', ()=>{
+      console.log('high')
+  })
+
+  inLow.addEventListener('click', ()=>{
+      console.log('low')
+  })
+
+  energy.addEventListener('click', ()=>{
+      console.log('energy')
+      fetch('/increase-health', { method: 'POST' });
+      })
+      
+  food.addEventListener('click', ()=>{
+
+  })
+  book.addEventListener('click', ()=>{
+      
+  })
+}
+</script>
+<script>
+    let player = document.getElementById("player");
+    function togglePlayPause() {
+        if (player.paused) {
+            player.play();
+        } else {
+            player.pause();
+        }
+    }
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.1.3/socket.io.js"></script>
+<script src="./js/main.js"></script>
+</body>
+</html>
