@@ -399,41 +399,48 @@ app.post('/repay', function(req, res) {
   });
 });
 
-app.get('/findBank_oxQuiz', async (req, res) => {
-  try {
-    const q_tag = req.body.tag;
-    const quiz = await findQuiz_OX(q_tag);
 
-    res.send({ quiz });
-  }
-  catch (error) {
-    res.status(500).send({ error: error.message });
-  }
-  if (action === 'bank_selQuiz') {
-    findBank_selQuiz();
-  }
-})
-
-async function findQuiz_OX(q_tag){
+async function findQuiz_OX(q_tag) {  // 문제 1개 불러오기
   try {
     const random_Quiz = await quizzes.aggregate([
-      {$match: {tag: q_tag}},
-      {$sample : {size:1}}
+      { $match: { tag: q_tag } }, 
+      { $sample: { size: 1 } }
     ]).exec();
-    const OXQ = JSON.stringify(random_Quiz[0].q);  // 문제
-    const OXA = JSON.stringify(random_Quiz[0].a);  // 답
+    const OXQ = JSON.stringify(randomBank_OXquiz[0].q);  // 문제
+    const OXA = JSON.stringify(randomBank_OXquiz[0].a);  // 답
 
-    console.log('은행 OX 퀴즈!:', randomBank_OXquiz[0]);
-    console.log('은행 OX 문제 및 답:', bank_OXQ, bank_OXA);
-    console.log();
+    console.log(random_Quiz[0])
+    console.log('은행 OX 퀴즈!:', random_Quiz[0]);
+    console.log('은행 OX 문제 및 답:', OXQ, OXA);
 
-    return random_Quiz[0];
+    res.send({ quiz: findQuiz_OX[0] });
   }
-  catch(err) {
+  catch (err) {
     console.log(err)
   }
 }
+// // OX 퀴즈 함수
+// async function findQuiz_OX(q_tag, res) {  // 문제 3개 불러오기
+//   try {
+//     const random_Quiz = await quizzes.aggregate([
+//       { $match: { tag: q_tag } },
+//       { $sample: { size: 3 } }
+//     ]).exec();
+    
+//     const quiz_list = random_Quiz.map(quiz => {
+//       return {
+//         q: quiz.q, 
+//         a: quiz.a, 
+//         point: quiz.point, 
+//       };
+//     })
 
+//     res.send({ quizzes: quiz_list });
+//   }
+//   catch (error) {
+//     console.log('Error fetching quiz data:', error)
+//   }
+// }
 app.get('/findBank_oxQuiz', async (req, res) => {
   try {
     const q_tag = req.body.tag;
@@ -445,28 +452,6 @@ app.get('/findBank_oxQuiz', async (req, res) => {
     res.status(500).send({ error: error.message });
   }
 });
-
-
-async function findQuiz_OX(q_tag) {
-  try{
-    const random_Quiz = await quizzes.aggregate([
-      {$match: {tag: q_tag}},
-      {$sample : {size:1}}
-    ]).exec();
-    const OXQ = JSON.stringify(randomBank_OXquiz[0].q);  // 문제
-    const OXA = JSON.stringify(randomBank_OXquiz[0].a);  // 답
-
-    console.log(random_Quiz[0])
-    console.log('은행 OX 퀴즈!:', random_Quiz[0]);
-    console.log('은행 OX 문제 및 답:', OXQ, OXA);
-
-    res.send({ quiz: findQuiz_OX[0] });
-  }
-  catch(err) {
-    console.log(err)
-  }
-}
-
 
 
 // 은행 퀴즈 (은행에서 일하기)
@@ -706,7 +691,6 @@ io.on('connection', (socket)=> {
         let userinfo = JSON.parse(reply);
 
         async function update_value() {
-        // function update_value() {
           time--;
           // 시간 초과에 의한 게임 종료
           if (time <= -1) {
