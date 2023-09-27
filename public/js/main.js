@@ -72,7 +72,7 @@ function create() {
   })
 
   const map = this.make.tilemap({ key: 'map'});
-  const tileset = map.addTilesetImage('new_tileset', 'tileset') ; //타일셋이미지명, preload에서 지정한 key값
+  const tileset = map.addTilesetImage('new_tileset', 'tileset') ; // 타일셋이미지명, preload에서 지정한 key값
   const tilesLayer = map.createLayer('tiles', tileset);
   const collision = map.createLayer('collision', tileset);
 
@@ -118,7 +118,7 @@ function create() {
       }
     });
   });
-  this.socket.on('userinfo',(data) => {
+  this.socket.on('userinfo', (data) => {
     LoanNumTxt.innerHTML = `${data.loan}`
     MoneyNumTxt.innerHTML = `${data.savings}`
     BankUsername.innerHTML = `${data.name} 님`
@@ -147,7 +147,7 @@ function create() {
   this.socket.on('time', (time) => {
     time_elem.innerHTML = `${time}`
   })
-  this.socket.on('health',(health) => {
+  this.socket.on('health', (health) => {
     health_elem.innerHTML = `${health}`
   })
 
@@ -167,18 +167,18 @@ function create() {
 
 
   this.socket.on('event', (data) => {
-      const player1 = data.players[0];
-      const player2 = data.players[1];
-      const x1 = player1.x;
-      const y1 = player1.y;
-      const x2 = player2.x;
-      const y2 = player2.y;
-    
-      // 플레이어1과 플레이어2가 특정 좌표 안에 들어왔을 때 팝업창을 열기(팝업차단에 걸리므로 모달창으로 수정)
-      if (checkInPopupArea(x1, y1) && checkInPopupArea(x2, y2)) {
-        self.player.setPosition(360, 540);
-        window.open('./popup.html', '_blank');
-      }
+    const player1 = data.players[0];
+    const player2 = data.players[1];
+    const x1 = player1.x;
+    const y1 = player1.y;
+    const x2 = player2.x;
+    const y2 = player2.y;
+  
+    // 플레이어1과 플레이어2가 특정 좌표 안에 들어왔을 때 팝업창을 열기(팝업차단에 걸리므로 모달창으로 수정)
+    if (checkInPopupArea(x1, y1) && checkInPopupArea(x2, y2)) {
+      self.player.setPosition(360, 540);
+      window.open('./popup.html', '_blank');
+    }
   })
 
   // 채팅 기능
@@ -190,20 +190,20 @@ function create() {
 
   chatInput.addEventListener('keypress', (event) => {
     if (event.key === 'Enter') {
-        event.preventDefault();
-        sendButton.click();
+      event.preventDefault();
+      sendButton.click();
     }
   });
 
   sendButton.addEventListener("click", () => {  // 버튼을 클릭해서 param 내용(사용자명, 메시지) 전송
-      const param = { name: nickname.textContent, msg: chatInput.value }
-      this.socket.emit("chatting", param);
+    const param = { name: nickname.textContent, msg: chatInput.value }
+    this.socket.emit("chatting", param);
   })
   this.socket.on('chatting', (data) => {
-      const { name, msg} = data;  // 사용자명, 메세지, 보낸 시간
-      const item = new LiModel(name, msg);  // LiModel을 인스턴스 화
-      item.makeLi();
-      chatList.scrollTo(0, chatList.scrollHeight);
+    const { name, msg } = data;  // 사용자명, 메세지, 보낸 시간
+    const item = new LiModel(name, msg);  // LiModel을 인스턴스 화
+    item.makeLi();
+    chatList.scrollTo(0, chatList.scrollHeight);
   });
   function LiModel (name, msg) {
     this.name = name;
@@ -215,7 +215,6 @@ function create() {
           <span class="user" style="color: black; font-size: 30px; font-family: 'Cafe24Supermagic-Bold-v1.0'; font-weight: 500; word-wrap: break-word;">${this.name} :  </span>
       </span>
       <span class="message" style="color: black; font-size: 30px;font-family: 'Cafe24Supermagic-Bold-v1.0'; font-weight: 500; word-wrap: break-word;">${this.msg}</span>
-      
       `;
       ul.innerHTML = dom;
       egList.appendChild(ul);
@@ -226,7 +225,6 @@ function create() {
 }
 
 function update() {
-
   this.keyboard = this.input.keyboard
   this.cursors = this.input.keyboard.createCursorKeys();
   const speed = 180;
@@ -282,32 +280,32 @@ function update() {
     };
     
 
-  //// 건물 중심 좌표 및 범위, 건물 범위 체크함수
-    if (x >= 144 && x <= 207 && y>= 225 && y <=256){  //상점: x: 128 ~ 224, y: 225~256
+  // 건물 중심 좌표 및 범위, 건물 범위 체크함수
+    if (x >= 144 && x <= 207 && y>= 225 && y <=256) {  // 상점: x: 128 ~ 224, y: 225~256
       openShop(); 
     }
-    else if (x >= 465 && x <= 524 && y>= 225 && y <=258){ //부동산: x: 448~544, y:225~258
+    else if (x >= 465 && x <= 524 && y>= 225 && y <=258) { // 부동산: x: 448~544, y:225~258
       openEstate(); 
     }
-    else if (x>=786 && x <=816 && y>= 195 && y <=240){ //학원: x:576~672 y:144~208
+    else if (x>=786 && x <=816 && y>= 195 && y <=240) { // 학원: x:576~672 y:144~208
       openAcademy(); 
     }
-    else if (x>=1011 && x <=1264 && y>= 98 && y <=190){
+    else if (x>=1011 && x <=1264 && y>= 98 && y <=190) {
       openLabor();
     }
-    else if (x >= 1011 && x <=1230 && y >= 32 && y <=208){ //노가다: x: 816~1040, y:32~208
+    else if (x >= 1011 && x <=1230 && y >= 32 && y <=208) { // 노가다: x: 816~1040, y:32~208
       openLabor();
     }
-    else if (x >= 144 && x <= 207 && y >= 592 && y <=656){ //경찰: x: 64~128,, y:592~656
+    else if (x >= 144 && x <= 207 && y >= 592 && y <=656) { // 경찰: x: 64~128,, y:592~656
       openPolice(); 
     }
-    else if (x >= 465 && x <= 524 && y>= 608 && y <= 670){ //집: x: 465~524 , y: 592~656
+    else if (x >= 465 && x <= 524 && y>= 608 && y <= 670) { // 집: x: 465~524 , y: 592~656
       openHouse();
     }
-    else if (x>= 736 && x <= 800 && y>= 608 && y <= 670){ //병원: x: 576 ~ 672,  x:608~640, y: 592~656
+    else if (x>= 736 && x <= 800 && y>= 608 && y <= 670) { // 병원: x: 576 ~ 672,  x:608~640, y: 592~656
       openBank();
     }
-    else if (x>= 1072 && x <=1136 && y>= 641 && y <=672){ //은행: x:896~960 , 은행: y: 641~670
+    else if (x>= 1072 && x <=1136 && y>= 641 && y <=672) { // 은행: x: 896~960, 은행: y: 641~670
       openClinic(); 
     }
     else {
@@ -351,7 +349,7 @@ function addOtherPlayers(self, playerInfo) {
   // otherPlayer.setTint(Math.random() * 0xffffff);
   self.otherPlayers.add(otherPlayer);
 
-  // // console.log(self.otherPlayers.scene) //드디어 scene이 나옴
+  // // console.log(self.otherPlayers.scene) // 드디어 scene이 나옴
   // self.otherPlayers.scene.anims.create({
   //   // key: otherPlayer.avatar + '-left',
   //   key: 'left',
@@ -431,13 +429,13 @@ function isCollidingWithMap(player) {
       const tile = colliMap[row][col];
 
       if (tile && isColliding(
-        {  //사각형1: 플레이어
+        {  // 사각형1: 플레이어
           x: player.x - 32/2,
           y: player.y,
           w: 32, 
           h: 32,
         },
-        {  //사각형2: 타일
+        {  // 사각형2: 타일
           x: col * 32,
           y: row * 32,
           w: 32,
@@ -463,8 +461,8 @@ const bankSelect = document.getElementById('bankSelect');
 const bankact = document.getElementById('bankact');
 const bank_origin = `
 <button type="button" class="BankActBtn" style="width: 139px; height: 51px; left: 21px; top: 268px; position: absolute">
-    <div class="BankActBtnbox" style="width: 139px; height: 51px; left: 0px; top: 0px; position: absolute; border-radius: 15px"></div>
-    <div class="BankActTxt" style="width: 118px; height: 23px; left: 11px; top: 11px; position: absolute; text-align: center; color: black; font-size: 25px; font-family: Sunflower; font-weight: 500; word-wrap: break-word">예금</div>
+  <div class="BankActBtnbox" style="width: 139px; height: 51px; left: 0px; top: 0px; position: absolute; border-radius: 15px"></div>
+  <div class="BankActTxt" style="width: 118px; height: 23px; left: 11px; top: 11px; position: absolute; text-align: center; color: black; font-size: 25px; font-family: Sunflower; font-weight: 500; word-wrap: break-word">예금</div>
 </button>`
 
 const shop = document.getElementById('shop');
@@ -494,7 +492,7 @@ n_btn.addEventListener('click', () => {
   setTimeout(() => {
     answer.style.display = "block";
     console.log('ans')
-}, 3000);
+  }, 3000);
 })
 
 const result = document.getElementById('result');
@@ -574,7 +572,7 @@ energy.addEventListener('click', () => {
   })
   .then(response => response.json())
   .then(data => {
-
+    // 
   })
 })
 
@@ -616,7 +614,7 @@ function openEstate() {
   estate.style.display = "block";
 }
 
-sell_h.addEventListener('click', ()=>{
+sell_h.addEventListener('click', () => {
   console.log('집 팔기');
   fetch('/celling_room', { method: 'POST' })
     .then(response => response.json())
@@ -637,11 +635,11 @@ buy_h.addEventListener('click', () => {
     .then(response => response.json())
     .then(data => {
       if (data.msg) {
-          alert(data.msg);
+        alert(data.msg);
       }
       else {
-          // 마이페이지 수정 코드
-          alert(data.msg);
+        // 마이페이지 수정 코드
+        alert(data.msg);
       }
     });
 })
@@ -738,8 +736,8 @@ const handleWithdraw = () => {
     });
   }
   else {
-      alert('잔액이 부족합니다.');
-      // 이건 서버에서 전달해줘야함 수정 실패했을때
+    alert('잔액이 부족합니다.');
+    // 이건 서버에서 전달해줘야함 수정 실패했을때
   }
 };
 const handleLoan = () => {
@@ -761,7 +759,7 @@ const handleLoan = () => {
     });
   }
   else {
-    // alert('대출할 금액을 입력해주세요!');
+    alert('대출할 금액을 입력해주세요!');
   }
 };
 
