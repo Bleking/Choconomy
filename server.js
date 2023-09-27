@@ -53,7 +53,7 @@ app.post('/saveData', async function (req, res) {
   let nickname = req.body.nickname;
   const checkname = await checkDB(nickname);
   if (checkname) {
-      res.json({ success: false });
+    res.json({ success: false });
   } 
   else {
     const random_job = await RandomJob()
@@ -76,10 +76,10 @@ app.post('/saveData', async function (req, res) {
       alive: 1
     };
     const user_status = {
-        name : nickname, 
-        game: 0, 
-        ready : 0, 
-        score : 0, 
+      name : nickname, 
+      game: 0, 
+      ready : 0, 
+      score : 0, 
     }
     userinfo.score = userinfo.money + userinfo.savings - userinfo.loan
     req.session.nickname = nickname;
@@ -95,36 +95,36 @@ app.post('/updateReady', async (req, res) => {
   const readyStatus = req.body.ready;
 
   try {
-      await collection.updateOne({ name: nickname }, { $set: { ready: readyStatus } });
-      res.json({ success: true });
-      allReady();
+    await collection.updateOne({ name: nickname }, { $set: { ready: readyStatus } });
+    res.json({ success: true });
+    allReady();
   }
   catch (error) {
-      console.error(error);
-      res.json({ success: false });
+    console.error(error);
+    res.json({ success: false });
   }
 });
 
 app.post('/celling_room', (req, res) => {
   const nickname = req.cookies.nickname;
   redisClient.get(nickname, (err, reply) => {
-      if (err) {
-          console.log(err);
-          res.status(500).send();
+    if (err) {
+      console.log(err);
+      res.status(500).send();
+    }
+    else {
+      let userinfo = JSON.parse(reply);
+      if (userinfo.housing === 0) {
+        res.send({msg : '보유하고 있는 집이 없습니다.'});
       }
       else {
-          let userinfo = JSON.parse(reply);
-          if (userinfo.housing === 0) {
-            res.send({msg : '보유하고 있는 집이 없습니다.'});
-          }
-          else {
-            userinfo.housing = 0;
-            userinfo.money += 50000;
-            const updatedValue = JSON.stringify(userinfo);
-            redisClient.set(nickname, updatedValue);
-            res.send({ money: userinfo.money, housing: userinfo.housing, msg: '판매완료' });
-          }
+        userinfo.housing = 0;
+        userinfo.money += 50000;
+        const updatedValue = JSON.stringify(userinfo);
+        redisClient.set(nickname, updatedValue);
+        res.send({ money: userinfo.money, housing: userinfo.housing, msg: '판매완료' });
       }
+    }
   });
 });
 
@@ -132,27 +132,27 @@ app.post('/celling_room', (req, res) => {
 app.post('/buying_room', (req, res) => {
   const nickname = req.cookies.nickname;
   redisClient.get(nickname, (err, reply) => {
-      if (err) {
-          console.log(err);
-          // res.status(500).send();
+    if (err) {
+      console.log(err);
+      // res.status(500).send();
+    }
+    else {
+      let userinfo = JSON.parse(reply);
+
+      if (userinfo.housing === 0) {
+        userinfo.housing = 40000;
+        userinfo.money -= 40000;
+        const updatedValue = JSON.stringify(userinfo);
+        redisClient.set(nickname, updatedValue);
+        res.send({ money: userinfo.money, housing: userinfo.housing, msg: '구매완료'});
       }
       else {
-          let userinfo = JSON.parse(reply);
-          if(userinfo.housing === 0){
-            userinfo.housing = 40000;
-            userinfo.money -= 40000;
-            const updatedValue = JSON.stringify(userinfo);
-            redisClient.set(nickname, updatedValue);
-            res.send({ money: userinfo.money, housing: userinfo.housing, msg: '구매완료'});
-            
-          }else{
-            userinfo.housing = 0;
-            userinfo.money += 50000;
-            redisClient.set(nickname, JSON.stringify(userinfo));
-            res.send({msg : '이미 보유하고 있습니다.'});
-          }
-          
+        userinfo.housing = 0;
+        userinfo.money += 50000;
+        redisClient.set(nickname, JSON.stringify(userinfo));
+        res.send({msg : '이미 보유하고 있습니다.'});
       }
+    }
   });
 });
 
@@ -243,7 +243,7 @@ app.post('/mart', function(req, res) {
         res.send({ ability: userinfo.ability, money: userinfo.money })
       }
       // // 보험
-      // function insurance_1() {
+      // function insurance_1 () {
       //   if (userinfo.insurance === 0 && chose_insurance_1 === 0 && chose_insurance_2 !== 1) {
       //     userinfo.insurance = 1;
       //     chose_insurance_1 = 1;
@@ -571,13 +571,13 @@ async function allReady() {
   const ready_player = await collection.countDocuments({ready : 1});
   
   // if((total_player != 0)&&(total_player === ready_player)) {
-  if (total_player === ready_player){
-    setTimeout(()=>{
-        io.emit('all-ready');
+  if (total_player === ready_player) {
+    setTimeout(() => {
+      io.emit('all-ready');
     }, 3000);
     console.log(total_player)
     console.log(ready_player)
-  return 
+    return 
   }
   else {
     return setInterval(allReady, 3000);
@@ -587,8 +587,8 @@ function checkDB(nickname) {
   return new Promise((resolve) => {
     redisClient.exists(nickname, (err, result) => {
     if (err) {
-        console.error(err);
-        resolve(false);
+      console.error(err);
+      resolve(false);
     }
     resolve(result === 1);
     });
@@ -598,8 +598,8 @@ function RandomJob() {
   return new Promise((resolve) => {
     redisClient.srandmember('job_list', (err, random_job) => {
       if (err) {
-          console.error(err);
-          resolve(null);
+        console.error(err);
+        resolve(null);
       }
       resolve(random_job);
     });
@@ -687,7 +687,7 @@ io.on('connection', (socket)=> {
         console.log(err)
       }
       else {
-        let time = 30;  // 1800
+        let time = 1800;  // 테스트 용: 30
         let userinfo = JSON.parse(reply);
 
         async function update_value() {
