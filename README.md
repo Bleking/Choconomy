@@ -3,7 +3,7 @@
 팀원: 정다진, 이연주, 하지원
 
 프로젝트 원본 링크
-https://github.com/djinii/krafton_jungle3
+https://github.com/djinii/Choconomy
 
 게임 설명:
 초등학생을 위한 경제 관념 게임
