@@ -9,8 +9,8 @@ https://github.com/djinii/Choconomy
 초등학생을 위한 경제 관념 게임
 
 필수 환경:
-Node.js 18버전 이상 필요
-Redis 데이터베이스 설치 필수
+- Node.js 18버전 이상 필요
+- Redis 데이터베이스 설치 필수
 
 ### 설치할 모듈:
 npm install 명령어로 필요한 모듈 설치
