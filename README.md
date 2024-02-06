@@ -3,7 +3,7 @@
 프로젝트 원본 링크:
 https://github.com/djinii/Choconomy
 
-## 필수 환경:
+### 필수 환경:
 - Node.js 18버전 이상 필요
 - Redis 데이터베이스 설치 필수
 
